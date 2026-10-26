@@ -6,7 +6,7 @@ import preferDisposeInTests from './prefer-dispose-in-tests.js'
  * ESLint plugin with the cleanup rules from the Epic Stack config.
  *
  * ```js
- * import rrKit from '@rr-kit/core/eslint'
+ * import rrKit from '@andreaspapav/rr-kit/eslint'
  * { plugins: { 'rr-kit': rrKit }, rules: { 'rr-kit/no-manual-dispose': 'warn' } }
  * ```
  */

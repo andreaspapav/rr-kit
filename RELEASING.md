@@ -22,12 +22,12 @@ Docs, tests and CI changes don't need a changeset.
 
 ### 1. npm scope
 
-The package is `@rr-kit/core`, so the `rr-kit` scope must belong to you:
+The package is published under the `andreaspapav` user scope, which every npm
+account owns automatically, so no org is needed. Publish while logged in as
+`andreaspapav` (`npm whoami`).
 
-- Create the `rr-kit` org at <https://www.npmjs.com/org/create> (free for public
-  packages).
-- If the name is taken, pick another scope and rename `name` in `package.json`,
-  the import examples in `README.md`, and the imports in the apps.
+To move it under an org later, create the org, publish under the new name and
+deprecate this one (`npm deprecate @andreaspapav/rr-kit "Moved to ..."`).
 
 ### 2. GitHub repo
 
@@ -58,8 +58,8 @@ provenance; every release from CI after it does.
 
 ### 4. Trusted publisher
 
-On npmjs.com, open **@rr-kit/core → Settings → Trusted publishing** and add a
-GitHub Actions publisher:
+On npmjs.com, open **@andreaspapav/rr-kit → Settings → Trusted publishing** and
+add a GitHub Actions publisher:
 
 - Organization or user: `andreaspapav`
 - Repository: `rr-kit`
@@ -85,7 +85,7 @@ npx changeset pre exit
 ## Fallback: token publishing
 
 If trusted publishing isn't available, create a granular npm access token with
-publish rights to `@rr-kit/core`, store it as the `NPM_TOKEN` repo secret, and
-add `NPM_TOKEN: ${{ secrets.NPM_TOKEN }}` and
+publish rights to `@andreaspapav/rr-kit`, store it as the `NPM_TOKEN` repo
+secret, and add `NPM_TOKEN: ${{ secrets.NPM_TOKEN }}` and
 `NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}` to the `env` of the Changesets step
 in `.github/workflows/release.yml`.

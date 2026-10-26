@@ -1,10 +1,10 @@
 # Notices
 
-`@rr-kit/core` is MIT licensed. Most of it is forked from the MIT-licensed
-projects below, whose copyright notices are reproduced in [LICENSE](./LICENSE).
-Each forked file starts with a `Forked from ...` comment that names its source.
-Those comments, the notices in LICENSE and this file must stay when the code is
-changed or moved.
+`@andreaspapav/rr-kit` is MIT licensed. Most of it is forked from the
+MIT-licensed projects below, whose copyright notices are reproduced in
+[LICENSE](./LICENSE). Each forked file starts with a `Forked from ...` comment
+that names its source. Those comments, the notices in LICENSE and this file must
+stay when the code is changed or moved.
 
 | Module              | Forked from                                                                                                                                       | Copyright               |
 | ------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------- |

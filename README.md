@@ -1,4 +1,4 @@
-# @rr-kit/core
+# @andreaspapav/rr-kit
 
 Small helpers shared by our React Router apps: assertions, singletons, TOTP,
 client hints, sitemap/robots.txt and two ESLint rules. Most of it is forked from
@@ -9,22 +9,22 @@ ESM only, Node 22+. Every helper is its own subpath export, so you only load
 what you import.
 
 ```sh
-npm install @rr-kit/core
+npm install @andreaspapav/rr-kit
 ```
 
 ## Subpath exports
 
-| Import                                     | Exports                                                                        |
-| ------------------------------------------ | ------------------------------------------------------------------------------ |
-| `@rr-kit/core/invariant`                   | `invariant`, `invariantResponse`, `InvariantError`                             |
-| `@rr-kit/core/remember`                    | `remember`, `forget`                                                           |
-| `@rr-kit/core/totp`                        | `generateTOTP`, `verifyTOTP`, `getTOTPAuthUri`, `HashAlgorithm`                |
-| `@rr-kit/core/client-hints`                | `getHintUtils`, `ClientHint`, `ClientHintsValue`                               |
-| `@rr-kit/core/client-hints/color-scheme`   | `clientHint`, `subscribeToSchemeChange`                                        |
-| `@rr-kit/core/client-hints/time-zone`      | `clientHint`                                                                   |
-| `@rr-kit/core/client-hints/reduced-motion` | `clientHint`, `subscribeToMotionChange`                                        |
-| `@rr-kit/core/seo`                         | `generateSitemap`, `generateRobotsTxt`, `SEOHandle`, `SitemapEntry`            |
-| `@rr-kit/core/eslint`                      | ESLint plugin (default) with `no-manual-dispose` and `prefer-dispose-in-tests` |
+| Import                                             | Exports                                                                        |
+| -------------------------------------------------- | ------------------------------------------------------------------------------ |
+| `@andreaspapav/rr-kit/invariant`                   | `invariant`, `invariantResponse`, `InvariantError`                             |
+| `@andreaspapav/rr-kit/remember`                    | `remember`, `forget`                                                           |
+| `@andreaspapav/rr-kit/totp`                        | `generateTOTP`, `verifyTOTP`, `getTOTPAuthUri`, `HashAlgorithm`                |
+| `@andreaspapav/rr-kit/client-hints`                | `getHintUtils`, `ClientHint`, `ClientHintsValue`                               |
+| `@andreaspapav/rr-kit/client-hints/color-scheme`   | `clientHint`, `subscribeToSchemeChange`                                        |
+| `@andreaspapav/rr-kit/client-hints/time-zone`      | `clientHint`                                                                   |
+| `@andreaspapav/rr-kit/client-hints/reduced-motion` | `clientHint`, `subscribeToMotionChange`                                        |
+| `@andreaspapav/rr-kit/seo`                         | `generateSitemap`, `generateRobotsTxt`, `SEOHandle`, `SitemapEntry`            |
+| `@andreaspapav/rr-kit/eslint`                      | ESLint plugin (default) with `no-manual-dispose` and `prefer-dispose-in-tests` |
 
 `totp` uses Web Crypto and belongs on the server. Keep it in a `*.server.ts`
 module so it never ends up in a client bundle.
@@ -32,13 +32,13 @@ module so it never ends up in a client bundle.
 ## Peer dependencies
 
 - `react-router` `^8`: needed for the `seo` types (`ServerBuild`).
-- `eslint` `^9 || ^10` (optional): only for `@rr-kit/core/eslint`.
+- `eslint` `^9 || ^10` (optional): only for `@andreaspapav/rr-kit/eslint`.
 
 ## ESLint plugin
 
 ```js
 // eslint.config.js
-import rrKit from '@rr-kit/core/eslint'
+import rrKit from '@andreaspapav/rr-kit/eslint'
 
 export default [
 	{
@@ -82,17 +82,18 @@ npm run dev                  # keeps dist/ up to date
 npm link                     # once: registers the global link
 
 cd ~/workspace/my-app
-npm link @rr-kit/core        # node_modules/@rr-kit/core -> ~/workspace/@rr-kit
+npm link @andreaspapav/rr-kit        # node_modules/@andreaspapav/rr-kit -> ~/workspace/@rr-kit
 ```
 
-Undo with `npm unlink @rr-kit/core && npm install` in the app. Note that any
-later `npm install` in the app also replaces the link with the registry version.
+Undo with `npm unlink @andreaspapav/rr-kit && npm install` in the app. Note that
+any later `npm install` in the app also replaces the link with the registry
+version.
 
 **`file:` dependency** (survives `npm install`, but don't commit it):
 
 ```sh
 cd ~/workspace/my-app
-npm install ../@rr-kit       # writes "@rr-kit/core": "file:../@rr-kit"
+npm install ../@rr-kit       # writes "@andreaspapav/rr-kit": "file:../@rr-kit"
 ```
 
 Revert `package.json` and `package-lock.json` before committing.

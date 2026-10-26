@@ -1,6 +1,6 @@
 # Changesets
 
-Every PR that changes what users of `@rr-kit/core` get adds a changeset:
+Every PR that changes what users of `@andreaspapav/rr-kit` get adds a changeset:
 
 ```sh
 npx changeset
