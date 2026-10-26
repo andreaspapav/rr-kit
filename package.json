@@ -1,0 +1,118 @@
+{
+  "name": "@rr-kit/core",
+  "version": "0.1.0",
+  "description": "Shared React Router / server helpers (invariant, remember, totp, client hints, seo, ESLint rules), forked from epic-web and maintained in-house.",
+  "keywords": [
+    "react-router",
+    "invariant",
+    "totp",
+    "client-hints",
+    "sitemap",
+    "robots.txt",
+    "eslint-plugin"
+  ],
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/andreaspapav/rr-kit.git"
+  },
+  "bugs": "https://github.com/andreaspapav/rr-kit/issues",
+  "homepage": "https://github.com/andreaspapav/rr-kit#readme",
+  "type": "module",
+  "sideEffects": false,
+  "files": [
+    "dist",
+    "LICENSE",
+    "NOTICE.md"
+  ],
+  "exports": {
+    "./invariant": {
+      "types": "./dist/invariant.d.ts",
+      "default": "./dist/invariant.js"
+    },
+    "./remember": {
+      "types": "./dist/remember.d.ts",
+      "default": "./dist/remember.js"
+    },
+    "./totp": {
+      "types": "./dist/totp.d.ts",
+      "default": "./dist/totp.js"
+    },
+    "./seo": {
+      "types": "./dist/seo.d.ts",
+      "default": "./dist/seo.js"
+    },
+    "./eslint": {
+      "types": "./dist/eslint/index.d.ts",
+      "default": "./dist/eslint/index.js"
+    },
+    "./client-hints": {
+      "types": "./dist/client-hints/index.d.ts",
+      "default": "./dist/client-hints/index.js"
+    },
+    "./client-hints/color-scheme": {
+      "types": "./dist/client-hints/color-scheme.d.ts",
+      "default": "./dist/client-hints/color-scheme.js"
+    },
+    "./client-hints/time-zone": {
+      "types": "./dist/client-hints/time-zone.d.ts",
+      "default": "./dist/client-hints/time-zone.js"
+    },
+    "./client-hints/reduced-motion": {
+      "types": "./dist/client-hints/reduced-motion.d.ts",
+      "default": "./dist/client-hints/reduced-motion.js"
+    },
+    "./package.json": "./package.json"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "engines": {
+    "node": ">=22"
+  },
+  "allowScripts": {},
+  "scripts": {
+    "build": "rm -rf dist && tsdown",
+    "dev": "tsdown --watch",
+    "typecheck": "tsc",
+    "lint": "eslint .",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "check:package": "publint --strict && attw --pack . --profile esm-only",
+    "validate": "npm run lint && npm run format:check && npm run typecheck && npm run test && npm run build && npm run check:package",
+    "changeset": "changeset",
+    "version-packages": "changeset version && npm install --package-lock-only",
+    "release": "changeset publish",
+    "prepack": "npm run build"
+  },
+  "peerDependencies": {
+    "eslint": "^9.0.0 || ^10.0.0",
+    "react-router": "^8.0.0"
+  },
+  "peerDependenciesMeta": {
+    "eslint": {
+      "optional": true
+    }
+  },
+  "dependencies": {
+    "base32-decode": "^1.0.0",
+    "base32-encode": "^2.0.0"
+  },
+  "devDependencies": {
+    "@arethetypeswrong/cli": "^0.18.5",
+    "@changesets/cli": "^3.0.3",
+    "@eslint/js": "^10.0.1",
+    "@types/node": "^22.0.0",
+    "eslint": "^10.13.0",
+    "globals": "^17.0.0",
+    "prettier": "^3.9.10",
+    "publint": "^0.3.25",
+    "react-router": "^8.5.0",
+    "tsdown": "^0.23.2",
+    "typescript": "~6.0.3",
+    "typescript-eslint": "^8.72.1",
+    "vitest": "^5.0.5"
+  }
+}
