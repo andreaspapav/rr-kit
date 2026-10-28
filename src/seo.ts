@@ -183,6 +183,43 @@ export async function generateSitemap(
 	})
 }
 
+export type SitemapIndexEntry = {
+	/** Path of a child sitemap, e.g. `/sitemaps/listings.xml`. */
+	route: string
+	lastmod?: string
+}
+
+/**
+ * A sitemap index (`<sitemapindex>`) that points at child sitemaps, for sites
+ * with more URLs than fit, or are worth keeping, in one sitemap file.
+ */
+export function generateSitemapIndex(
+	sitemaps: SitemapIndexEntry[],
+	{ siteUrl, headers }: Pick<SEOOptions, 'siteUrl' | 'headers'>,
+) {
+	const index = `<?xml version="1.0" encoding="UTF-8"?>
+<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+${sitemaps
+	.map(({ route, lastmod }) =>
+		[
+			'  <sitemap>',
+			`    <loc>${escapeXml(`${siteUrl}${route}`)}</loc>`,
+			...(lastmod ? [`    <lastmod>${lastmod}</lastmod>`] : []),
+			'  </sitemap>',
+		].join('\n'),
+	)
+	.join('\n')}
+</sitemapindex>`
+	const bytes = new TextEncoder().encode(index).byteLength
+	return new Response(index, {
+		headers: {
+			...headers,
+			'Content-Type': 'application/xml',
+			'Content-Length': String(bytes),
+		},
+	})
+}
+
 const robotsLabels = {
 	userAgent: 'User-agent',
 	allow: 'Allow',

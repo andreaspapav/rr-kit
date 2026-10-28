@@ -23,7 +23,7 @@ npm install @andreaspapav/rr-kit
 | `@andreaspapav/rr-kit/client-hints/color-scheme`   | `clientHint`, `subscribeToSchemeChange`                                        |
 | `@andreaspapav/rr-kit/client-hints/time-zone`      | `clientHint`                                                                   |
 | `@andreaspapav/rr-kit/client-hints/reduced-motion` | `clientHint`, `subscribeToMotionChange`                                        |
-| `@andreaspapav/rr-kit/seo`                         | `generateSitemap`, `generateRobotsTxt`, `SEOHandle`, `SitemapEntry`            |
+| `@andreaspapav/rr-kit/seo`                         | `generateSitemap`, `generateSitemapIndex`, `generateRobotsTxt`, `SEOHandle`, `SitemapEntry` |
 | `@andreaspapav/rr-kit/eslint`                      | ESLint plugin (default) with `no-manual-dispose` and `prefer-dispose-in-tests` |
 
 `totp` uses Web Crypto and belongs on the server. Keep it in a `*.server.ts`

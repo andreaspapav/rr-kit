@@ -1,5 +1,9 @@
 import { describe, expect, test } from 'vitest'
-import { generateRobotsTxt, generateSitemap } from './seo.ts'
+import {
+	generateRobotsTxt,
+	generateSitemap,
+	generateSitemapIndex,
+} from './seo.ts'
 
 type Routes = Parameters<typeof generateSitemap>[1]
 
@@ -149,6 +153,33 @@ test('escapes XML special characters in URLs', async () => {
 
 	expect(xml).toContain('<loc>https://x.test/search?a=1&amp;b=2</loc>')
 	expect(xml).toMatch(/^<\?xml/)
+})
+
+describe('generateSitemapIndex', () => {
+	test('lists child sitemaps with absolute, escaped URLs', async () => {
+		const response = generateSitemapIndex(
+			[
+				{ route: '/sitemaps/pages.xml' },
+				{ route: '/sitemaps/listings.xml?a=1&b=2', lastmod: '2026-10-28' },
+			],
+			{ siteUrl: 'https://example.com', headers: { 'Cache-Control': 'no-cache' } },
+		)
+		const xml = await response.text()
+
+		expect(response.headers.get('Content-Type')).toBe('application/xml')
+		expect(response.headers.get('Cache-Control')).toBe('no-cache')
+		expect(xml.startsWith('<?xml version="1.0" encoding="UTF-8"?>')).toBe(true)
+		expect(xml).toContain('<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">')
+		expect(xml).toContain(
+			'<sitemap>\n    <loc>https://example.com/sitemaps/pages.xml</loc>\n  </sitemap>',
+		)
+		expect(xml).toContain(
+			'<loc>https://example.com/sitemaps/listings.xml?a=1&amp;b=2</loc>\n    <lastmod>2026-10-28</lastmod>',
+		)
+		expect(response.headers.get('Content-Length')).toBe(
+			String(new TextEncoder().encode(xml).byteLength),
+		)
+	})
 })
 
 describe('generateRobotsTxt', () => {
