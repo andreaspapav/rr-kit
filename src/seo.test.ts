@@ -105,6 +105,52 @@ describe('generateSitemap', () => {
 	})
 })
 
+describe('generateSitemap entries option', () => {
+	const routes = {
+		root: route('root', { path: '' }),
+		about: route('about', { path: 'about', parentId: 'root' }),
+	} as unknown as Routes
+
+	test('adds entries that no route lists, e.g. from a database', async () => {
+		const xml = await (
+			await generateSitemap(request, routes, {
+				siteUrl: 'https://x.test',
+				entries: async () => [
+					{ route: '/listings/1', lastmod: '2026-10-20' },
+					null,
+				],
+			})
+		).text()
+
+		expect(xml).toContain('<loc>https://x.test/about</loc>')
+		expect(xml).toContain('<loc>https://x.test/listings/1</loc>')
+		expect(xml).toContain('<lastmod>2026-10-20</lastmod>')
+	})
+
+	test('a route already listed by a route module is not repeated', async () => {
+		const xml = await (
+			await generateSitemap(request, routes, {
+				siteUrl: 'https://x.test',
+				entries: [{ route: '/about' }],
+			})
+		).text()
+
+		expect(xml.match(/<loc>/g)).toHaveLength(1)
+	})
+})
+
+test('escapes XML special characters in URLs', async () => {
+	const xml = await (
+		await generateSitemap(request, {} as Routes, {
+			siteUrl: 'https://x.test',
+			entries: [{ route: '/search?a=1&b=2' }],
+		})
+	).text()
+
+	expect(xml).toContain('<loc>https://x.test/search?a=1&amp;b=2</loc>')
+	expect(xml).toMatch(/^<\?xml/)
+})
+
 describe('generateRobotsTxt', () => {
 	test('prepends the default policies', async () => {
 		const response = generateRobotsTxt([
