@@ -1,6 +1,6 @@
 {
   "name": "@andreaspapav/rr-kit",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Shared React Router / server helpers (invariant, remember, totp, client hints, seo, ESLint rules), forked from epic-web and maintained in-house.",
   "keywords": [
     "react-router",
