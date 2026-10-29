@@ -162,14 +162,19 @@ describe('generateSitemapIndex', () => {
 				{ route: '/sitemaps/pages.xml' },
 				{ route: '/sitemaps/listings.xml?a=1&b=2', lastmod: '2026-10-28' },
 			],
-			{ siteUrl: 'https://example.com', headers: { 'Cache-Control': 'no-cache' } },
+			{
+				siteUrl: 'https://example.com',
+				headers: { 'Cache-Control': 'no-cache' },
+			},
 		)
 		const xml = await response.text()
 
 		expect(response.headers.get('Content-Type')).toBe('application/xml')
 		expect(response.headers.get('Cache-Control')).toBe('no-cache')
 		expect(xml.startsWith('<?xml version="1.0" encoding="UTF-8"?>')).toBe(true)
-		expect(xml).toContain('<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">')
+		expect(xml).toContain(
+			'<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">',
+		)
 		expect(xml).toContain(
 			'<sitemap>\n    <loc>https://example.com/sitemaps/pages.xml</loc>\n  </sitemap>',
 		)

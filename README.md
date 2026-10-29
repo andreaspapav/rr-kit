@@ -14,17 +14,17 @@ npm install @andreaspapav/rr-kit
 
 ## Subpath exports
 
-| Import                                             | Exports                                                                        |
-| -------------------------------------------------- | ------------------------------------------------------------------------------ |
-| `@andreaspapav/rr-kit/invariant`                   | `invariant`, `invariantResponse`, `InvariantError`                             |
-| `@andreaspapav/rr-kit/remember`                    | `remember`, `forget`                                                           |
-| `@andreaspapav/rr-kit/totp`                        | `generateTOTP`, `verifyTOTP`, `getTOTPAuthUri`, `HashAlgorithm`                |
-| `@andreaspapav/rr-kit/client-hints`                | `getHintUtils`, `ClientHint`, `ClientHintsValue`                               |
-| `@andreaspapav/rr-kit/client-hints/color-scheme`   | `clientHint`, `subscribeToSchemeChange`                                        |
-| `@andreaspapav/rr-kit/client-hints/time-zone`      | `clientHint`                                                                   |
-| `@andreaspapav/rr-kit/client-hints/reduced-motion` | `clientHint`, `subscribeToMotionChange`                                        |
+| Import                                             | Exports                                                                                     |
+| -------------------------------------------------- | ------------------------------------------------------------------------------------------- |
+| `@andreaspapav/rr-kit/invariant`                   | `invariant`, `invariantResponse`, `InvariantError`                                          |
+| `@andreaspapav/rr-kit/remember`                    | `remember`, `forget`                                                                        |
+| `@andreaspapav/rr-kit/totp`                        | `generateTOTP`, `verifyTOTP`, `getTOTPAuthUri`, `HashAlgorithm`                             |
+| `@andreaspapav/rr-kit/client-hints`                | `getHintUtils`, `ClientHint`, `ClientHintsValue`                                            |
+| `@andreaspapav/rr-kit/client-hints/color-scheme`   | `clientHint`, `subscribeToSchemeChange`                                                     |
+| `@andreaspapav/rr-kit/client-hints/time-zone`      | `clientHint`                                                                                |
+| `@andreaspapav/rr-kit/client-hints/reduced-motion` | `clientHint`, `subscribeToMotionChange`                                                     |
 | `@andreaspapav/rr-kit/seo`                         | `generateSitemap`, `generateSitemapIndex`, `generateRobotsTxt`, `SEOHandle`, `SitemapEntry` |
-| `@andreaspapav/rr-kit/eslint`                      | ESLint plugin (default) with `no-manual-dispose` and `prefer-dispose-in-tests` |
+| `@andreaspapav/rr-kit/eslint`                      | ESLint plugin (default) with `no-manual-dispose` and `prefer-dispose-in-tests`              |
 
 `totp` uses Web Crypto and belongs on the server. Keep it in a `*.server.ts`
 module so it never ends up in a client bundle.
